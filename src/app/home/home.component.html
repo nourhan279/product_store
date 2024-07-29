@@ -1,0 +1,59 @@
+<nav class="fixed">
+  <ul id="nav-bar">
+    <li class="items home" style="font-weight: bold; font-size: 25px">
+      <a routerLink="/"><i class="fa-solid fa-house"></i>Home</a>
+    </li>
+    <li class="items text-black" id="cart">
+      <a routerLink="/cart"><i class="fa-solid fa-cart-shopping"></i>Cart</a>
+    </li>
+  </ul>
+</nav>
+
+<div class="search-container">
+  <div class="search-box">
+    <input
+      type="search"
+      [(ngModel)]="searchTerm"
+      placeholder="Search By Product Name"
+      (keydown.enter)="filterAndSortProducts()"
+    />
+    <button (click)="filterAndSortProducts()">
+      <i class="fa fa-search"></i>
+    </button>
+  </div>
+</div>
+
+<div class="filter-sort-container mt-3">
+  <div class="dropdown mb-3 position-static">
+    <select
+      id="filter-category"
+      [(ngModel)]="selectedCategory"
+      (change)="filterAndSortProducts()"
+    >
+      <option value="">Filter by Category</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+  </div>
+  <div class="dropdown position-static">
+    <select
+      id="sort-price"
+      [(ngModel)]="selectedSort"
+      (change)="filterAndSortProducts()"
+    >
+      <option value="">Sort by Price</option>
+      <option value="asc">Low to High</option>
+      <option value="desc">High to Low</option>
+    </select>
+  </div>
+</div>
+
+<div id="products" class="container mt-4">
+  <div *ngFor="let product of filteredProducts" class="product">
+    <img [src]="product.thumbnail" alt="{{ product.title }}" />
+    <h2>{{ product.title }}</h2>
+    <p>Price: ${{ product.price }}</p>
+    <button [routerLink]="['/View-item', product.id]">View Item</button>
+  </div>
+</div>

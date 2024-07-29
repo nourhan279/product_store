@@ -1,0 +1,43 @@
+<div *ngIf="product" class="card">
+  <img
+    [src]="product.thumbnail"
+    class="card-img-top"
+    alt="{{ product.title }}"
+  />
+  <div class="card-body">
+    <h1 class="card-title">{{ product.title }}</h1>
+    <p class="card-text">{{ product.description }}</p>
+    <p class="card-text">Price: ${{ product.price }}</p>
+    <p class="card-text">Brand: {{ product.brand }}</p>
+    <p class="card-text mb-4">Category: {{ product.category }}</p>
+    <a routerLink="/" class="btn btn-primary">Back to Products</a>
+
+    <form [formGroup]="form" (ngSubmit)="addToCart()">
+      <div class="form-group">
+        <label for="quantity">Quantity</label>
+        <input
+          type="number"
+          formControlName="quantity"
+          id="quantity"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            form.controls['quantity'].invalid &&
+            (form.controls['quantity'].dirty ||
+              form.controls['quantity'].touched)
+          "
+        >
+          <small class="text-danger">Please enter a valid quantity.</small>
+        </div>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary ml-4"
+        [disabled]="form.invalid"
+      >
+        Add To Cart
+      </button>
+    </form>
+  </div>
+</div>

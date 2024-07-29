@@ -1,1 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#nav-bar {
+  display: flex;
+  flex-direction: row;
+  border: 2px solid;
+  padding: 15px 20px;
+  list-style-type: none;
+  z-index: 1000;
+  margin: 0;
+  gap: 20px;
+  position: fixed;
+  width: 100%;
+  background-color: white;
+  border-color: white;
+  top: 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+}
+
+.items {
+  text-decoration: none;
+  letter-spacing: 3px;
+  position: relative;
+  padding-left: 10px;
+
+  &:hover {
+    background-color: darkgray;
+  }
+}
+
+select {
+  z-index: 100;
+  position: static !important;
+}
